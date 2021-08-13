@@ -18,7 +18,7 @@ type Events struct {
 
 
 type OpenDgraphDockerProtocol interface {
-	Subscribe(eventTrigger Events)(*Events, *grpc.ClientConn, error)
+	Subscribe(eventTrigger Events, port string)(*Events, *grpc.ClientConn, error)
 	CloseConnection(grpc_Client *grpc.ClientConn)
 }
 
@@ -26,8 +26,8 @@ func Fire() OpenDgraphDockerProtocol{
 	return &Events{}
 }
 
-func (*Events)Subscribe(event Events) (*Events, *grpc.ClientConn, error){
-	dgraph_Connect, err := grpc.Dial(":9080", grpc.WithInsecure()); if err != nil {
+func (*Events)Subscribe(event Events, port string) (*Events, *grpc.ClientConn, error){
+	dgraph_Connect, err := grpc.Dial(":"+port, grpc.WithInsecure()); if err != nil {
 		return &Events{},&grpc.ClientConn{}, err 
 	}
 

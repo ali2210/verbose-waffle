@@ -3,11 +3,7 @@ package main
 import(
 	."github.com/ali2210/verbose-waffle/draph_pkg"
 	"fmt"
-	// "google.golang.org/grpc"
-	// "github.com/dgraph-io/dgo/v2"
-	// "github.com/dgraph-io/dgo/v2/protos/api"
-   	// "context"
-	//    "fmt"
+	"os"
 )
 
 var(
@@ -17,12 +13,12 @@ var(
 
 func main() {
 		
-		
+	port := os.Getenv("Port")	
 	event,client,  err := trigger.Subscribe(Events{
 		Uid: "_sub0",
 		EventName : "subcbe",
 		Data : "HelloWorld",
-	});if err != nil {
+	}, port);if err != nil {
 		fmt.Println("Error", err)
 		return 
 	}
