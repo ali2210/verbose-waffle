@@ -1,6 +1,6 @@
 # verbose-waffle
 Connect d-graph with dock
 
-##. Run docker 
+      ##. Run docker 
       
-      $ docker run --network="host" -it verbose-waffle 
+            $ docker run --network="host" -it verbose-waffle 
